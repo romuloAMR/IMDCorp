@@ -48,18 +48,32 @@ public class Teacher extends Person implements Workers {
 
     @Override
     public Double calculateSalary() {
-        /*
-        * The base salary for teacher is R$ 4,000.00
-        * To calculate a professor's salary, the level and education must be considered.
-        * For each level, 5% is added to the value of the previous level.
-        * Additionally, a percentage is added to the base salary: 25% for specialization,
-        * 50% for a master's degree, and 75% for a doctorate.
-        */
+        final double BASE = 4000.00;
 
-        // Make this
+        // Calculate level increment (5% per level)
+        double levelMultiplier = 1;
+        switch (this.getLevel()) {
+            case VIII: levelMultiplier *= 1.05;
+            case VII:  levelMultiplier *= 1.05;
+            case VI:   levelMultiplier *= 1.05;
+            case V:    levelMultiplier *= 1.05;
+            case IV:   levelMultiplier *= 1.05;
+            case III:  levelMultiplier *= 1.05;
+            case II:   levelMultiplier *= 1.05;
+            case I:    break;
+        }
 
-        throw new UnsupportedOperationException("Unimplemented method 'calculateSalary'");
+        // Calculate postgraduate increment
+        double postgraduateMultiplier = 1.0;
+        switch (this.getPostgraduate()) {
+            case PhD:            postgraduateMultiplier = 1.75; break;
+            case Masters_Degree: postgraduateMultiplier = 1.50; break;
+            case Specialization: postgraduateMultiplier = 1.25; break;
+        }
+
+        // Final salary calculation
+        double finalSalary = BASE * levelMultiplier * postgraduateMultiplier;
+        return finalSalary;
     }
 
-    
 }

@@ -57,22 +57,36 @@ public class AdminTechnician extends Person implements Workers{
 
     @Override
     public Double calculateSalary() {
-        
-        /*
-         * The base salary for technicians is R$ 2,500.00.
-         * The calculation of the technician's salary also takes into account
-         * the level and education. For each level, 3% is added over the
-         * value of the previous level. For education, the addition to the
-         * base salary is 25% for specialization, 50% for master's degree
-         * and 75% for doctorate. Additionally, if the technician
-         * receives hazard pay, 50% will be added to the base salary.
-         * If the technician has a gratified role, the addition will be
-         * 50% over the base salary.
-        */
+        final double BASE = 2500.00;
 
-        // Make this
+        // Calculate level increment (3% per level)
+        double levelMultiplier = 1;
+        switch (this.getLevel()) {
+            case VIII: levelMultiplier *= 1.03;
+            case VII:  levelMultiplier *= 1.03;
+            case VI:   levelMultiplier *= 1.03;
+            case V:    levelMultiplier *= 1.03;
+            case IV:   levelMultiplier *= 1.03;
+            case III:  levelMultiplier *= 1.03;
+            case II:   levelMultiplier *= 1.03;
+            case I:    break;
+        }
 
-        throw new UnsupportedOperationException("Unimplemented method 'calculateSalary'");
+        // Calculate postgraduate increment
+        double postgraduateMultiplier = 1.0;
+        switch (this.getPostgraduate()) {
+            case PhD:            postgraduateMultiplier = 1.75; break;
+            case Masters_Degree: postgraduateMultiplier = 1.50; break;
+            case Specialization: postgraduateMultiplier = 1.25; break;
+        }
+
+        // Calculate hazard pay and bonus
+        double hazardPay = this.getUnhealthy() ? BASE * 0.5 : 0;
+        double bonus = this.getBonus() ? BASE * 0.5 : 0;
+
+        // Final salary calculation
+        double finalSalary = BASE * levelMultiplier * postgraduateMultiplier + hazardPay + bonus;
+        return finalSalary;
     }
-        
+
 }
