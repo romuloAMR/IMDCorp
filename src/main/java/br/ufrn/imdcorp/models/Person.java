@@ -1,10 +1,11 @@
 package main.java.br.ufrn.imdcorp.models;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import main.java.br.ufrn.imdcorp.enums.Gender;
 
-public abstract class Person {
+public abstract class Person implements Serializable{
     private String name;
     private String cpf;
     private LocalDate birthdate;
