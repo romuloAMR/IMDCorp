@@ -1,5 +1,7 @@
 package main.java.br.ufrn.imdcorp.services;
 
+import java.util.Scanner;
+
 import main.java.br.ufrn.imdcorp.dao.DAODatabase;
 import main.java.br.ufrn.imdcorp.models.Person;
 import main.java.br.ufrn.imdcorp.models.Teacher;
@@ -68,5 +70,23 @@ public class Operations {
             }
         }
         return null;
+    }
+
+    public double calculateSalary(){
+        Scanner scan = new Scanner(System.in);
+        
+        System.out.print("Enter registration: ");
+        int reg = scan.nextInt();
+
+        System.out.print("Enter 0 to teacher or 1 to adimin technician: ");
+        int type = scan.nextInt();
+
+        double salary = -1;
+        switch (type) {
+            case 0: salary = this.searchTeacher(reg).calculateSalary(); break;
+            case 1: salary = this.searchAdminTechnician(reg).calculateSalary(); break;
+            default: System.out.println("Invalid argument!"); break;
+        }
+        return salary;
     }
 }
