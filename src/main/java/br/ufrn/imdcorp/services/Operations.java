@@ -80,6 +80,7 @@ public class Operations {
 
         System.out.print("Enter 0 to teacher or 1 to adimin technician: ");
         int type = scan.nextInt();
+        scan.close();
 
         double salary = -1;
         switch (type) {
