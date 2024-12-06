@@ -5,13 +5,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 import main.java.br.ufrn.imdcorp.models.Person;
 
 public class DAODatabase {
-    private static final String FILE_PATH = "src/main/resource/database.bin";
+    private static final String FILE_PATH = "src/main/resources/database.bin";
     private static DAODatabase database;
     private List<Person> workers;
 
@@ -19,7 +20,7 @@ public class DAODatabase {
         workers = new ArrayList<>();
     }
 
-    public static DAODatabase getInstance(){
+    public static synchronized DAODatabase getInstance(){
         if (database == null){
             database = new DAODatabase();
             database.load();
