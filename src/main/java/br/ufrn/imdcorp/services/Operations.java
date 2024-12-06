@@ -198,7 +198,7 @@ public class Operations {
                 System.out.println("Address: " + teacher.getAddress().getStreet() + ", " + teacher.getAddress().getNumber() + ", " +
                                    teacher.getAddress().getNeighborhood() + ", " + teacher.getAddress().getCity() + ", " + teacher.getAddress().getCep());
                 System.out.println("Registration: " + teacher.getRegistration());
-                System.out.println("Salary: " + teacher.getSalary());
+                System.out.println("Salary: " + teacher.calculateSalary());
                 System.out.println("Department: " + teacher.getDepartment());
                 System.out.println("Workload: " + teacher.getWorkload());
                 System.out.println("Entry Date: " + teacher.getEntryDate());
@@ -222,7 +222,7 @@ public class Operations {
                 System.out.println("Address: " + technician.getAddress().getStreet() + ", " + technician.getAddress().getNumber() + ", " +
                                    technician.getAddress().getNeighborhood() + ", " + technician.getAddress().getCity() + ", " + technician.getAddress().getCep());
                 System.out.println("Registration: " + technician.getRegistration());
-                System.out.println("Salary: " + technician.getSalary());
+                System.out.println("Salary: " + technician.calculateSalary());
                 System.out.println("Department: " + technician.getDepartment());
                 System.out.println("Workload: " + technician.getWorkload());
                 System.out.println("Entry Date: " + technician.getEntryDate());
