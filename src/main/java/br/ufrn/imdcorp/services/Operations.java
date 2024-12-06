@@ -187,6 +187,56 @@ public class Operations {
         return null;
     }
 
+    public static void showTeacher(int registration) {
+        for (Person p : database.getWorkers()) {
+            if (p instanceof Teacher && p.getRegistration() == registration) {
+                Teacher teacher = (Teacher) p;
+                System.out.println("Name: " + teacher.getName());
+                System.out.println("CPF: " + teacher.getCpf());
+                System.out.println("Birthdate: " + teacher.getBirthdate());
+                System.out.println("Gender: " + teacher.getGender());
+                System.out.println("Address: " + teacher.getAddress().getStreet() + ", " + teacher.getAddress().getNumber() + ", " +
+                                   teacher.getAddress().getNeighborhood() + ", " + teacher.getAddress().getCity() + ", " + teacher.getAddress().getCep());
+                System.out.println("Registration: " + teacher.getRegistration());
+                System.out.println("Salary: " + teacher.getSalary());
+                System.out.println("Department: " + teacher.getDepartment());
+                System.out.println("Workload: " + teacher.getWorkload());
+                System.out.println("Entry Date: " + teacher.getEntryDate());
+                System.out.println("Level: " + teacher.getLevel());
+                System.out.println("Postgraduate: " + teacher.getPostgraduate());
+                System.out.println("Classes: " + String.join(", ", teacher.getClasses()));
+                return;
+            }
+        }
+        System.out.println("Teacher not found!");
+    }
+
+    public static void showAdminTechnician(int registration) {
+        for (Person p : database.getWorkers()) {
+            if (p instanceof AdminTechnician && p.getRegistration() == registration) {
+                AdminTechnician technician = (AdminTechnician) p;
+                System.out.println("Name: " + technician.getName());
+                System.out.println("CPF: " + technician.getCpf());
+                System.out.println("Birthdate: " + technician.getBirthdate());
+                System.out.println("Gender: " + technician.getGender());
+                System.out.println("Address: " + technician.getAddress().getStreet() + ", " + technician.getAddress().getNumber() + ", " +
+                                   technician.getAddress().getNeighborhood() + ", " + technician.getAddress().getCity() + ", " + technician.getAddress().getCep());
+                System.out.println("Registration: " + technician.getRegistration());
+                System.out.println("Salary: " + technician.getSalary());
+                System.out.println("Department: " + technician.getDepartment());
+                System.out.println("Workload: " + technician.getWorkload());
+                System.out.println("Entry Date: " + technician.getEntryDate());
+                System.out.println("Level: " + technician.getLevel());
+                System.out.println("Postgraduate: " + technician.getPostgraduate());
+                System.out.println("Unhealthy: " + (technician.getUnhealthy() ? "Yes" : "No"));
+                System.out.println("Bonus: " + (technician.getBonus() ? "Yes" : "No"));
+                return;
+            }
+        }
+        System.out.println("Administrative technician not found!");
+    }
+    
+
     public static double calculateSalary(){
         Scanner scan = new Scanner(System.in);
 
