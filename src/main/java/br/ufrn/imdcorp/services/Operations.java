@@ -17,24 +17,26 @@ public class Operations {
     private static DAODatabase database = DAODatabase.getInstance();
 
     public static void registerTeacher() {
+        @SuppressWarnings("resource")
         Scanner scan = new Scanner(System.in);
-
+    
         System.out.print("Enter name: ");
         String name = scan.nextLine();
-
+    
         System.out.print("Enter CPF: ");
         String cpf = scan.nextLine();
-
+    
         System.out.print("Enter birthdate (yyyy-mm-dd): ");
         LocalDate birthdate = LocalDate.parse(scan.nextLine());
-
+    
         System.out.print("Enter gender (MALE, FEMALE, OTHER): ");
         Gender gender = Gender.valueOf(scan.nextLine().toUpperCase());
-
+    
         System.out.print("Enter street: ");
         String street = scan.nextLine();
         System.out.print("Enter number: ");
         int number = scan.nextInt();
+        scan.nextLine();
         System.out.print("Enter neighborhood: ");
         String neighborhood = scan.nextLine();
         System.out.print("Enter city: ");
@@ -42,56 +44,53 @@ public class Operations {
         System.out.print("Enter CEP: ");
         String cep = scan.nextLine();
         Address address = new Address(street, number, neighborhood, city, cep);
-
+    
         System.out.print("Enter registration: ");
         Long registration = Long.parseLong(scan.nextLine());
-
-        System.out.print("Enter salary: ");
-        Double salary = Double.parseDouble(scan.nextLine());
-
+    
         System.out.print("Enter department: ");
         String department = scan.nextLine();
-
+    
         System.out.print("Enter workload: ");
         int workload = scan.nextInt();
-
+        scan.nextLine();
         System.out.print("Enter entry date (yyyy-mm-dd): ");
         LocalDate entryDate = LocalDate.parse(scan.nextLine());
-
+    
         System.out.print("Enter level (I, II, III, IV, V, VI, VII, VIII): ");
         Level level = Level.valueOf(scan.nextLine().toUpperCase());
-
+    
         System.out.print("Enter postgraduate (SPECIALIZATION, MASTERS_DEGREE, PHD): ");
         Postgraduate postgraduate = Postgraduate.valueOf(scan.nextLine().toUpperCase());
-
+    
         System.out.print("Enter classes (comma separated): ");
         List<String> classes = List.of(scan.nextLine().split(","));
-
-        scan.close();
-
-        Teacher teacher = new Teacher(name, cpf, birthdate, gender, address, registration, salary, department, workload, entryDate, level, postgraduate, classes);
+    
+        Teacher teacher = new Teacher(name, cpf, birthdate, gender, address, registration, 0.0, department, workload, entryDate, level, postgraduate, classes);
         database.getWorkers().add(teacher);
     }
-
+    
     public static void registerAdminTechnician() {
+        @SuppressWarnings("resource")
         Scanner scan = new Scanner(System.in);
-
+    
         System.out.print("Enter name: ");
         String name = scan.nextLine();
-
+    
         System.out.print("Enter CPF: ");
         String cpf = scan.nextLine();
-
+    
         System.out.print("Enter birthdate (yyyy-mm-dd): ");
         LocalDate birthdate = LocalDate.parse(scan.nextLine());
-
+    
         System.out.print("Enter gender (MALE, FEMALE, OTHER): ");
         Gender gender = Gender.valueOf(scan.nextLine().toUpperCase());
-
+    
         System.out.print("Enter street: ");
         String street = scan.nextLine();
         System.out.print("Enter number: ");
         int number = scan.nextInt();
+        scan.nextLine();
         System.out.print("Enter neighborhood: ");
         String neighborhood = scan.nextLine();
         System.out.print("Enter city: ");
@@ -99,44 +98,42 @@ public class Operations {
         System.out.print("Enter CEP: ");
         String cep = scan.nextLine();
         Address address = new Address(street, number, neighborhood, city, cep);
-
+    
         System.out.print("Enter registration: ");
         Long registration = Long.parseLong(scan.nextLine());
-
-        System.out.print("Enter salary: ");
-        Double salary = Double.parseDouble(scan.nextLine());
-
+    
         System.out.print("Enter department: ");
         String department = scan.nextLine();
-
+    
         System.out.print("Enter workload: ");
         int workload = scan.nextInt();
-
+        scan.nextLine();
         System.out.print("Enter entry date (yyyy-mm-dd): ");
         LocalDate entryDate = LocalDate.parse(scan.nextLine());
-
+    
         System.out.print("Enter level (I, II, III, IV, V, VI, VII, VIII): ");
         Level level = Level.valueOf(scan.nextLine().toUpperCase());
-
+    
         System.out.print("Enter postgraduate (SPECIALIZATION, MASTERS_DEGREE, PHD): ");
         Postgraduate postgraduate = Postgraduate.valueOf(scan.nextLine().toUpperCase());
-
+    
         System.out.print("Is the job unhealthy? (true/false): ");
         Boolean unhealthy = scan.nextBoolean();
-
+        scan.nextLine();
         System.out.print("Does the technician receive a bonus? (true/false): ");
         Boolean bonus = scan.nextBoolean();
-
-        scan.close();
-
-        AdminTechnician technician = new AdminTechnician(name, cpf, birthdate, gender, address, registration, salary, department, workload, entryDate, level, postgraduate, unhealthy, bonus);
+        scan.nextLine();
+    
+        AdminTechnician technician = new AdminTechnician(name, cpf, birthdate, gender, address, registration, 0.0, department, workload, entryDate, level, postgraduate, unhealthy, bonus);
         database.getWorkers().add(technician);
     }
+    
 
     public static void listTeachers() {
         for (Person p : database.getWorkers()) {
             if (p instanceof Teacher) {
                 Teacher teacher = (Teacher) p;
+                System.out.println("");
                 System.out.println("Name: " + teacher.getName() + "\nClasses: " + String.join(", ", teacher.getClasses()));
             }
         }
@@ -146,6 +143,7 @@ public class Operations {
         for (Person p : database.getWorkers()) {
             if (p instanceof AdminTechnician) {
                 AdminTechnician technician = (AdminTechnician) p;
+                System.out.println("");
                 System.out.println("Name: " + technician.getName() + "\nFunction: " + technician.getDepartment());
             }
         }
@@ -236,8 +234,8 @@ public class Operations {
         System.out.println("Administrative technician not found!");
     }
     
-
     public static double calculateSalary(){
+        @SuppressWarnings("resource")
         Scanner scan = new Scanner(System.in);
 
         System.out.print("Enter registration: ");
@@ -245,7 +243,6 @@ public class Operations {
 
         System.out.print("Enter 0 to teacher or 1 to admin technician: ");
         int type = scan.nextInt();
-        scan.close();
 
         double salary = -1;
         switch (type) {
