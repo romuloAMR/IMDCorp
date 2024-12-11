@@ -1,6 +1,8 @@
 package main.java.br.ufrn.imdcorp.models;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable {
     private String street;
     private Integer number;
     private String neighborhood;
