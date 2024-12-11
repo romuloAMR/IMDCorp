@@ -66,9 +66,9 @@ public class Teacher extends Person implements Workers {
         // Calculate postgraduate increment
         double postgraduateMultiplier = 1.0;
         switch (this.getPostgraduate()) {
-            case PhD:            postgraduateMultiplier = 1.75; break;
-            case Masters_Degree: postgraduateMultiplier = 1.50; break;
-            case Specialization: postgraduateMultiplier = 1.25; break;
+            case PHD:            postgraduateMultiplier = 1.75; break;
+            case MASTERS_DEGREE: postgraduateMultiplier = 1.50; break;
+            case SPECIALIZATION: postgraduateMultiplier = 1.25; break;
         }
 
         // Final salary calculation
